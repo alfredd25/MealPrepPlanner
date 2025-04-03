@@ -1,2 +1,1 @@
-# MealPrepPlanner
-A Meal Prep AI Chatbot
+# Meal Prep Planner Chatbot 
