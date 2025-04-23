@@ -1,0 +1,171 @@
+[
+  {
+    "id": "recipe-1",
+    "name": "Grilled Chicken Salad",
+    "mealType": "lunch",
+    "description": "A healthy and delicious grilled chicken salad with fresh vegetables.",
+    "prepTime": 15,
+    "cookTime": 15,
+    "servings": 2,
+    "nutritionalInfo": {
+      "calories": 350,
+      "protein": 30,
+      "carbs": 15,
+      "fat": 18,
+      "fiber": 6
+    },
+    "ingredients": [
+      {
+        "id": "ing-1",
+        "name": "Chicken breast",
+        "amount": 2,
+        "unit": ""
+      },
+      {
+        "id": "ing-2",
+        "name": "Mixed greens",
+        "amount": 4,
+        "unit": "cups"
+      },
+      {
+        "id": "ing-3",
+        "name": "Cherry tomatoes",
+        "amount": 1,
+        "unit": "cup"
+      },
+      {
+        "id": "ing-4",
+        "name": "Cucumber",
+        "amount": 1,
+        "unit": ""
+      },
+      {
+        "id": "ing-5",
+        "name": "Olive oil",
+        "amount": 2,
+        "unit": "tbsp"
+      }
+    ],
+    "instructions": [
+      "Season chicken breasts with salt and pepper",
+      "Grill chicken for 6-7 minutes on each side until cooked through",
+      "Let chicken rest, then slice into strips",
+      "Mix greens, tomatoes, and cucumber in a large bowl",
+      "Top with sliced chicken and drizzle with olive oil"
+    ],
+    "cuisine": "Mediterranean",
+    "tags": ["high-protein", "low-carb"]
+  },
+  {
+    "id": "recipe-2",
+    "name": "Breakfast Smoothie Bowl",
+    "mealType": "breakfast",
+    "description": "A nutritious smoothie bowl packed with fruit and protein.",
+    "prepTime": 10,
+    "cookTime": 0,
+    "servings": 1,
+    "nutritionalInfo": {
+      "calories": 320,
+      "protein": 15,
+      "carbs": 45,
+      "fat": 12,
+      "fiber": 8
+    },
+    "ingredients": [
+      {
+        "id": "ing-1",
+        "name": "Frozen banana",
+        "amount": 1,
+        "unit": ""
+      },
+      {
+        "id": "ing-2",
+        "name": "Frozen berries",
+        "amount": 1,
+        "unit": "cup"
+      },
+      {
+        "id": "ing-3",
+        "name": "Greek yogurt",
+        "amount": 0.5,
+        "unit": "cup"
+      },
+      {
+        "id": "ing-4",
+        "name": "Almond milk",
+        "amount": 0.25,
+        "unit": "cup"
+      },
+      {
+        "id": "ing-5",
+        "name": "Granola",
+        "amount": 2,
+        "unit": "tbsp"
+      }
+    ],
+    "instructions": [
+      "Blend banana, berries, yogurt, and almond milk until smooth",
+      "Pour into a bowl",
+      "Top with granola and additional fresh fruit if desired"
+    ],
+    "cuisine": "American",
+    "tags": ["vegetarian", "quick"]
+  },
+  {
+    "id": "recipe-3",
+    "name": "Baked Salmon with Asparagus",
+    "mealType": "dinner",
+    "description": "Oven-baked salmon with roasted asparagus for a healthy dinner.",
+    "prepTime": 10,
+    "cookTime": 20,
+    "servings": 2,
+    "nutritionalInfo": {
+      "calories": 380,
+      "protein": 35,
+      "carbs": 10,
+      "fat": 22,
+      "fiber": 4
+    },
+    "ingredients": [
+      {
+        "id": "ing-1",
+        "name": "Salmon fillets",
+        "amount": 2,
+        "unit": ""
+      },
+      {
+        "id": "ing-2",
+        "name": "Asparagus",
+        "amount": 1,
+        "unit": "bunch"
+      },
+      {
+        "id": "ing-3",
+        "name": "Olive oil",
+        "amount": 2,
+        "unit": "tbsp"
+      },
+      {
+        "id": "ing-4",
+        "name": "Lemon",
+        "amount": 1,
+        "unit": ""
+      },
+      {
+        "id": "ing-5",
+        "name": "Dill",
+        "amount": 1,
+        "unit": "tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 400°F (200°C)",
+      "Place salmon on a baking sheet, drizzle with olive oil",
+      "Arrange asparagus around salmon, season everything with salt and pepper",
+      "Slice half the lemon and place on salmon, squeeze the other half over everything",
+      "Sprinkle with dill and bake for 15-20 minutes until salmon is cooked through"
+    ],
+    "cuisine": "Scandinavian",
+    "tags": ["high-protein", "low-carb", "omega-3"]
+  }
+] 
