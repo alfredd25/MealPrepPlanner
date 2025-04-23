@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 // Simple in-memory user database for demo purposes
 // In production, you'd use a real database
@@ -62,8 +63,8 @@ export async function createUser(name: string, email: string, password: string):
 }
 
 // Authentication middleware for API routes
-export function withAuth(handler: any) {
-  return async (req: any, res: any) => {
+export function withAuth(handler: (req: NextApiRequest, res: NextApiResponse) => Promise<void>) {
+  return async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const authHeader = req.headers.authorization;
       

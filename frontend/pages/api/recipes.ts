@@ -10,7 +10,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     // Get the user from the request (added by withAuth middleware)
-    const { email } = req.user;
+    const email = req.user?.email;
+    
+    if (!email) {
+      return res.status(401).json({ message: 'Unauthorized: User not found' });
+    }
     
     // Get sample recipes
     const sampleRecipes = getSampleRecipes();
