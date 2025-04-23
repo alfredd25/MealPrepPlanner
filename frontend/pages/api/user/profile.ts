@@ -2,9 +2,15 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuth } from '../../../utils/auth';
 import { getUserByEmail, saveUser } from '../../../utils/db';
 
+// Define interface to extend NextApiRequest
+interface ExtendedRequest extends NextApiRequest {
+  user?: { email: string; [key: string]: any };
+}
+
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Get the user from the request (added by withAuth middleware)
-  const email = req.user?.email;
+  const extReq = req as ExtendedRequest;
+  const email = extReq.user?.email;
   
   if (!email) {
     return res.status(401).json({ message: 'Unauthorized: User not found' });

@@ -3,6 +3,11 @@ import { withAuth } from '../../utils/auth';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { getSampleRecipes } from '../../utils/db';
 
+// Define interface to extend NextApiRequest
+interface ExtendedRequest extends NextApiRequest {
+  user?: { email: string; [key: string]: any };
+}
+
 // Initialize the Google Generative AI client
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '');
 const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
@@ -23,7 +28,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     // Check if user exists
-    const email = req.user?.email;
+    const extReq = req as ExtendedRequest;
+    const email = extReq.user?.email;
     
     if (!email) {
       return res.status(401).json({ message: 'Unauthorized: User not found' });
