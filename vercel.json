@@ -1,20 +1,13 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/frontend/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/$1"
-    }
-  ],
-  "outputDirectory": "frontend/.next"
+  "framework": "nextjs",
+  "projectSettings": {
+    "framework": "nextjs",
+    "buildCommand": "cd frontend && npm install && npm run build",
+    "outputDirectory": "frontend/.next",
+    "rootDirectory": "frontend"
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/$1" }
+  ]
 }
