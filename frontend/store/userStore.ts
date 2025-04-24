@@ -55,8 +55,8 @@ export const useUserStore = create<UserState>()(
       login: async (email, password) => {
         set({ isLoading: true, error: null });
         try {
-          // In a real app, you'd make an API call here
-          const response = await fetch('/api/auth/login', {
+          // Updated API endpoint to match your project structure
+          const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -87,8 +87,8 @@ export const useUserStore = create<UserState>()(
       signup: async (name, email, password) => {
         set({ isLoading: true, error: null });
         try {
-          // In a real app, you'd make an API call here
-          const response = await fetch('/api/auth/signup', {
+          // Updated API endpoint to match your project structure
+          const response = await fetch('/api/signup', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -201,4 +201,4 @@ export const useUserStore = create<UserState>()(
       }),
     }
   )
-); 
+);

@@ -135,7 +135,7 @@ export default function Layout({ children }: LayoutProps) {
         
         <div className="mt-4">
           <Link 
-            href={isAuthenticated ? "/profile" : "/login"} 
+            href={isAuthenticated ? "/profile" : "/signin"} 
             className="sidebar-item"
           >
             <UserCircleIcon className="w-5 h-5" />
@@ -187,4 +187,4 @@ export default function Layout({ children }: LayoutProps) {
       </div>
     </div>
   );
-} 
+}

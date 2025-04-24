@@ -7,7 +7,11 @@
     "outputDirectory": "frontend/.next",
     "rootDirectory": "frontend"
   },
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/$1" }
+  "routes": [
+    { "src": "/signin", "dest": "/frontend/signin" },
+    { "src": "/sign-in", "dest": "/frontend/sign-in" },
+    { "src": "/signup", "dest": "/frontend/signup" },
+    { "src": "/sign-up", "dest": "/frontend/sign-up" },
+    { "src": "/(.*)", "dest": "/frontend/$1" }
   ]
 }

@@ -2,5 +2,11 @@
   "version": 2,
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next"
+  "outputDirectory": ".next",
+  "routes": [
+    { "src": "/signin", "dest": "/signin" },
+    { "src": "/sign-in", "dest": "/sign-in" },
+    { "src": "/signup", "dest": "/signup" },
+    { "src": "/sign-up", "dest": "/sign-up" }
+  ]
 }
