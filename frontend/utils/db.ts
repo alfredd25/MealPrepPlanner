@@ -30,7 +30,7 @@ interface User {
   id: string;
   name: string;
   email: string;
-  password: string;
+  password?: string; // Making password optional to fix the type error
   dietaryGoals?: Record<string, any>;
   dietType?: string;
   allergies?: string[];
@@ -142,4 +142,4 @@ export function deleteUserRecipe(recipeId: string, userId: string): boolean {
     console.error('Error deleting user recipe:', error);
     return false;
   }
-} 
+}

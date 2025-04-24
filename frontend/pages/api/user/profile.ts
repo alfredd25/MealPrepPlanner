@@ -1,70 +1,73 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { withAuth } from '../../../utils/auth';
 import { getUserByEmail, saveUser } from '../../../utils/db';
 
-// Define interface to extend NextApiRequest
-interface ExtendedRequest extends NextApiRequest {
-  user?: { email: string; [key: string]: any };
-}
+// Mock default user profile
+const defaultProfile = {
+  id: "default-user",
+  name: "Default User",
+  email: "user@example.com",
+  dietaryGoals: {
+    calories: 2000,
+    protein: 100,
+    carbs: 250,
+    fat: 70
+  },
+  dietType: "none",
+  allergies: [],
+  preferences: {
+    cuisinePreferences: ["italian", "mexican", "asian"],
+    useFrozenIngredients: true,
+    seasonalIngredientsOnly: false
+  }
+};
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Get the user from the request (added by withAuth middleware)
-  const extReq = req as ExtendedRequest;
-  const email = extReq.user?.email;
-  
-  if (!email) {
-    return res.status(401).json({ message: 'Unauthorized: User not found' });
-  }
-  
-  // Get user data
-  const user = getUserByEmail(email);
-  
-  if (!user) {
-    return res.status(404).json({ message: 'User not found' });
-  }
-  
-  // Handle GET request - return user profile
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Handle GET requests - return profile
   if (req.method === 'GET') {
-    return res.status(200).json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      dietaryGoals: user.dietaryGoals || {},
-      dietType: user.dietType || 'none',
-      allergies: user.allergies || [],
-      preferences: user.preferences || {}
-    });
+    try {
+      // Get default user
+      const user = getUserByEmail("user@example.com") || defaultProfile;
+      
+      // Return the user profile without the password
+      return res.status(200).json({
+        ...user,
+        password: undefined
+      });
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
   }
   
-  // Handle PUT request - update user profile
+  // Handle PUT requests - update profile
   if (req.method === 'PUT') {
-    const { name, dietaryGoals, dietType, allergies, preferences } = req.body;
-    
-    // Update user fields (if provided)
-    if (name) user.name = name;
-    if (dietaryGoals) user.dietaryGoals = dietaryGoals;
-    if (dietType) user.dietType = dietType;
-    if (allergies) user.allergies = allergies;
-    if (preferences) user.preferences = preferences;
-    
-    // Save updated user
-    saveUser(user);
-    
-    // Return updated user profile
-    return res.status(200).json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      dietaryGoals: user.dietaryGoals || {},
-      dietType: user.dietType || 'none',
-      allergies: user.allergies || [],
-      preferences: user.preferences || {}
-    });
+    try {
+      // Get existing user or use default
+      let user = getUserByEmail("user@example.com") || defaultProfile;
+      
+      // Update user with request body
+      user = {
+        ...user,
+        ...req.body,
+        // Preserve ID and email
+        id: user.id,
+        email: user.email
+      };
+      
+      // Save the updated user
+      saveUser(user);
+      
+      // Return the updated profile without the password
+      return res.status(200).json({
+        ...user,
+        password: undefined
+      });
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
   }
   
-  // If method is not GET or PUT, return 405 Method Not Allowed
+  // Handle unsupported methods
   return res.status(405).json({ message: 'Method not allowed' });
 }
-
-// Wrap handler with authentication middleware
-export default withAuth(handler); 

@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { withAuth } from '../../../utils/auth';
 import { getSampleRecipes } from '../../../utils/db';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -67,5 +66,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-// Wrap handler with authentication middleware
-export default withAuth(handler); 
+export default handler;

@@ -97,8 +97,6 @@ export const useChatStore = create<ChatState>()(
         // If no active chat, create one
         if (!activeChatId) {
           const newChatId = get().createNewChat();
-          // No need to set activeChatId again as it's already set in createNewChat
-          // set({ activeChatId: newChatId });
         }
         
         // Add user message
@@ -132,7 +130,7 @@ export const useChatStore = create<ChatState>()(
         });
         
         try {
-          // In a real app, you'd make an API call to your Flask backend
+          // Make API call without authentication
           const response = await fetch('/api/chat', {
             method: 'POST',
             headers: {
@@ -156,7 +154,7 @@ export const useChatStore = create<ChatState>()(
           const assistantMessage: ChatMessage = {
             id: generateId(),
             role: 'assistant',
-            content: data.message,
+            content: data.response, // Update to match API response format
             timestamp: Date.now(),
           };
           
@@ -208,4 +206,4 @@ export const useChatStore = create<ChatState>()(
       }),
     }
   )
-); 
+);
