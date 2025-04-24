@@ -26,7 +26,7 @@ interface ChatState {
   error: string | null;
   
   // Actions
-  createNewChat: () => void;
+  createNewChat: () => string;
   setActiveChat: (chatId: string) => void;
   deleteChat: (chatId: string) => void;
   renameChat: (chatId: string, newTitle: string) => void;
@@ -130,16 +130,22 @@ export const useChatStore = create<ChatState>()(
         });
         
         try {
-          // Make API call without authentication
-          const response = await fetch('/api/chat', {
+          // Get the active chat with the updated user message
+          const activeChat = get().chats.find(c => c.id === get().activeChatId);
+          
+          if (!activeChat) {
+            throw new Error('No active chat found');
+          }
+          
+          // Make API call to the new gemini endpoint
+          const response = await fetch('/api/gemini', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               message: content,
-              chatId: get().activeChatId,
-              history: get().chats.find(c => c.id === get().activeChatId)?.messages || []
+              history: activeChat.messages
             }),
           });
           
@@ -154,7 +160,7 @@ export const useChatStore = create<ChatState>()(
           const assistantMessage: ChatMessage = {
             id: generateId(),
             role: 'assistant',
-            content: data.response, // Update to match API response format
+            content: data.response,
             timestamp: Date.now(),
           };
           
