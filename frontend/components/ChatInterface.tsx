@@ -1365,13 +1365,21 @@ export default function ChatInterface() {
                           if (detectedRecipes.length > 0) {
                             const mainRecipe = detectedRecipes[0]; // Take the first recipe as the main one
                             return (
-                              <button 
-                                key={mainRecipe.id}
-                                onClick={() => handleAddRecipe(mainRecipe.id, mainRecipe.title, mainRecipe)}
-                                className="mt-1 text-sm bg-green-100 hover:bg-green-200 text-green-800 dark:bg-green-900 dark:hover:bg-green-800 dark:text-green-100 py-1 px-3 rounded-full"
-                              >
-                                Add recipe "{mainRecipe.title}"
-                              </button>
+                              <div className="flex flex-col">
+                                <button 
+                                  key={mainRecipe.id}
+                                  onClick={() => handleAddRecipe(mainRecipe.id, mainRecipe.title, mainRecipe)}
+                                  className="mt-1 text-sm bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md flex items-center transition-colors duration-200"
+                                >
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
+                                  </svg>
+                                  Add "{mainRecipe.title}" to Recipes
+                                </button>
+                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-1">
+                                  Add this recipe to your collection and meal plan
+                                </p>
+                              </div>
                             );
                           }
                           return null;
