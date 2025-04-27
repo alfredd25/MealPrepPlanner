@@ -109,13 +109,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Ensure numbered lists use proper markdown format
     formattedText = formattedText.replace(/(?<!\n)(\d+)\)\s/g, '$1. ');
     
-    // If response is too long, truncate it
-    if (formattedText.length > 1500) {
-      const lastParagraph = formattedText.substring(0, 1500).lastIndexOf('\n\n');
+    // If response is too long, truncate it (increased from 1500 to 5000 characters)
+    if (formattedText.length > 5000) {
+      const lastParagraph = formattedText.substring(0, 5000).lastIndexOf('\n\n');
       if (lastParagraph > 0) {
         formattedText = formattedText.substring(0, lastParagraph) + "\n\n*[Response truncated for brevity]*";
       } else {
-        formattedText = formattedText.substring(0, 1500) + "...\n\n*[Response truncated for brevity]*";
+        formattedText = formattedText.substring(0, 5000) + "...\n\n*[Response truncated for brevity]*";
       }
     }
 
