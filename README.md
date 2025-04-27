@@ -116,4 +116,40 @@ The frontend communicates with the backend through RESTful API endpoints for:
 
 ## 📃 License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Setup Instructions
+
+### Environment Variables
+
+For the chat functionality to work, you need to set up a Google Gemini API key:
+
+1. Visit [Google AI Studio](https://ai.google.dev/) to get your API key
+2. Create a `.env.local` file in the `frontend` directory
+3. Add your API key:
+   ```
+   GOOGLE_API_KEY=your_api_key_here
+   ```
+
+### Running the Application
+
+```bash
+# Navigate to the frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The application will be available at http://localhost:3000
+
+## Troubleshooting
+
+If you encounter a 500 error with the chat functionality:
+
+1. Make sure your Google Gemini API key is correctly set in the `.env.local` file
+2. Restart the development server after setting the API key
+3. Check that the `data` directory exists with a `sample_recipes.json` file 

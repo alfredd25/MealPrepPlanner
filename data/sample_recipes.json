@@ -1,0 +1,44 @@
+[
+  {
+    "id": "sample1",
+    "title": "Quick Chicken Stir-Fry",
+    "ingredients": [
+      "2 boneless chicken breasts, sliced",
+      "2 cups mixed vegetables (bell peppers, broccoli, carrots)",
+      "3 tablespoons soy sauce",
+      "1 tablespoon olive oil",
+      "2 cloves garlic, minced",
+      "1 teaspoon ginger, grated",
+      "Salt and pepper to taste"
+    ],
+    "instructions": "1. Heat oil in a large pan over medium-high heat. \n2. Add chicken and cook until browned, about 5 minutes. \n3. Add garlic and ginger, cook for 30 seconds. \n4. Add vegetables and stir-fry for 3-4 minutes until crisp-tender. \n5. Add soy sauce and season with salt and pepper. \n6. Cook for another minute and serve hot with rice or noodles.",
+    "prepTime": 15,
+    "cookTime": 10,
+    "servings": 2,
+    "cuisine": "Asian",
+    "mealType": "dinner",
+    "imageUrl": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"
+  },
+  {
+    "id": "sample2",
+    "title": "Mediterranean Salad Bowl",
+    "ingredients": [
+      "1 cup quinoa, cooked",
+      "1 cucumber, diced",
+      "1 cup cherry tomatoes, halved",
+      "1/2 cup feta cheese, crumbled",
+      "1/4 cup Kalamata olives, pitted",
+      "2 tablespoons olive oil",
+      "1 tablespoon lemon juice",
+      "Salt and pepper to taste",
+      "Fresh herbs (parsley, mint) for garnish"
+    ],
+    "instructions": "1. Cook quinoa according to package instructions and let cool. \n2. In a large bowl, combine cooled quinoa, cucumber, tomatoes, feta, and olives. \n3. Whisk together olive oil and lemon juice for the dressing. \n4. Pour dressing over the salad and toss gently. \n5. Season with salt and pepper. \n6. Garnish with fresh herbs before serving.",
+    "prepTime": 20,
+    "cookTime": 0,
+    "servings": 4,
+    "cuisine": "Mediterranean",
+    "mealType": "lunch",
+    "imageUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"
+  }
+] 

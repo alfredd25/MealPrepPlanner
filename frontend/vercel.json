@@ -7,6 +7,7 @@
     { "src": "/signin", "dest": "/signin" },
     { "src": "/sign-in", "dest": "/sign-in" },
     { "src": "/signup", "dest": "/signup" },
-    { "src": "/sign-up", "dest": "/sign-up" }
+    { "src": "/sign-up", "dest": "/sign-up" },
+    { "src": "/api/gemini", "dest": "/api/gemini" }
   ]
 }

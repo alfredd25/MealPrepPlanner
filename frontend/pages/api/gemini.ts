@@ -1,4 +1,5 @@
-import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { getSampleRecipes } from '../../utils/db';
 
 // Check if Google API key is available
@@ -22,7 +23,12 @@ const fallbackResponses = [
   "Chef Prep is waiting to help you! Please add a Google Gemini API key to enable the chat feature."
 ];
 
-export default async function handler(req, res) {
+interface ChatMessage {
+  role: string;
+  content: string;
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
@@ -30,7 +36,7 @@ export default async function handler(req, res) {
 
   try {
     // Get the message from the request body
-    const { message, history } = req.body;
+    const { message, history } = req.body as { message: string, history?: ChatMessage[] };
 
     if (!message) {
       return res.status(400).json({ message: 'Message is required' });
@@ -53,7 +59,7 @@ export default async function handler(req, res) {
     console.log('Sending message to Google Generative AI:', message.substring(0, 50) + (message.length > 50 ? '...' : ''));
 
     // Format chat history for Gemini API if provided
-    let formattedHistory = [];
+    let formattedHistory: Array<{role: string, parts: Array<{text: string}>}> = [];
     if (Array.isArray(history) && history.length > 0) {
       formattedHistory = history.map(msg => ({
         role: msg.role === 'assistant' ? 'model' : 'user',
@@ -125,7 +131,7 @@ export default async function handler(req, res) {
       response: formattedText,
       suggestedRecipes
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error from Gemini API:', error);
     return res.status(500).json({ 
       message: 'Error from AI service', 
@@ -133,4 +139,4 @@ export default async function handler(req, res) {
       stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
-}
+} 
