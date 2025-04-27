@@ -1355,37 +1355,6 @@ export default function ChatInterface() {
                         {message.content}
                       </ReactMarkdown>
                     </div>
-                    
-                    {/* Recipe detection and Add button */}
-                    {message.role === 'assistant' && (
-                      <div className="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
-                        {(() => {
-                          const detectedRecipes = detectRecipes(message.content);
-                          // Only show one button if recipes were detected
-                          if (detectedRecipes.length > 0) {
-                            const mainRecipe = detectedRecipes[0]; // Take the first recipe as the main one
-                            return (
-                              <div className="flex flex-col">
-                                <button 
-                                  key={mainRecipe.id}
-                                  onClick={() => handleAddRecipe(mainRecipe.id, mainRecipe.title, mainRecipe)}
-                                  className="mt-1 text-sm bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md flex items-center transition-colors duration-200"
-                                >
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
-                                  </svg>
-                                  Add "{mainRecipe.title}" to Recipes
-                                </button>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-1">
-                                  Add this recipe to your collection and meal plan
-                                </p>
-                              </div>
-                            );
-                          }
-                          return null;
-                        })()}
-                      </div>
-                    )}
                   </div>
                 )}
               </div>
@@ -1428,6 +1397,32 @@ export default function ChatInterface() {
               </svg>
             </button>
           </div>
+          
+          {/* Add to recipe button */}
+          <button 
+            type="button"
+            onClick={() => {
+              if (activeChat && activeChat.messages.length > 0) {
+                const lastAssistantMessage = [...activeChat.messages]
+                  .reverse()
+                  .find(msg => msg.role === 'assistant');
+                
+                if (lastAssistantMessage) {
+                  const recipeId = `recipe-${Date.now()}`;
+                  const recipeTitle = "Recipe from chat";
+                  
+                  handleAddRecipe(recipeId, recipeTitle, {
+                    id: recipeId,
+                    title: recipeTitle,
+                    fullText: lastAssistantMessage.content
+                  });
+                }
+              }
+            }}
+            className="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md flex-shrink-0"
+          >
+            Add to recipe
+          </button>
         </form>
         {error && (
           <p className="text-red-500 mt-2 text-sm">{error}</p>
