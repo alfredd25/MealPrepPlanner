@@ -54,7 +54,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Initialize the Google Generative AI client
     const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     console.log('Sending message to Google Generative AI:', message.substring(0, 50) + (message.length > 50 ? '...' : ''));
 
@@ -85,7 +85,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         topP: 0.95,
         maxOutputTokens: 1024,
       },
-      systemInstruction: SYSTEM_PROMPT,
+      systemInstruction: { text: SYSTEM_PROMPT },
     });
 
     // Send the message to Gemini
