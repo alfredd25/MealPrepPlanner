@@ -84,12 +84,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         topK: 40,
         topP: 0.95,
         maxOutputTokens: 1024,
-      },
-      systemInstruction: { text: SYSTEM_PROMPT },
+      }
     });
 
-    // Send the message to Gemini
-    const result = await chat.sendMessage(message);
+    // Send the system prompt as the first user message before the actual user message
+    await chat.sendMessage([{ text: `[System Instructions]: ${SYSTEM_PROMPT}` }]);
+    
+    // Send the actual user message
+    const result = await chat.sendMessage([{ text: message }]);
     const response = await result.response;
     const text = response.text();
 
